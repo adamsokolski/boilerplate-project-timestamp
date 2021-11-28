@@ -15,12 +15,13 @@
 
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">Timestamp Microservice</a>
+      <a class="navbar-brand p-3 display-1" href="/">Timestamp Microservice</a>
 
       <a
         href="https://github.com/adamsokolski/freeCodeCamp-timestamp-microservice"
         target="_blank"
         rel="noreferrer"
+        style="text-decoration: none"
         >GitHub</a
       >
     </nav>
@@ -38,14 +39,14 @@
                 value="2021-11-28T01:00"
               />
               <button type="submit" class="btn btn-primary inline-block m-2">
-                Submit
+                Convert
               </button>
             </div>
           </form>
           <form id="unixForm">
             <div class="mb-3 p-2">
               <label for="unixInput" class="form-label"
-                >Unix in milliseconds</label
+                >Unix <span class="text-muted">(ms)</span></label
               >
               <input
                 type="number"
@@ -58,7 +59,7 @@
                 Type unix in milliseconds.
               </div>
               <button type="submit" class="btn btn-primary inline-block m-2">
-                Submit
+                Convert
               </button>
             </div>
           </form>
@@ -106,27 +107,6 @@
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
       crossorigin="anonymous"
     ></script>
-    <script>
-      const unixForm = document.getElementById("unixForm");
-      const dateForm = document.getElementById("dateForm");
-
-      unixForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const unixInput = unixForm.elements["unixInput"].value;
-        if (unixInput) {
-          const url = window.location.href;
-          location.assign(`${url}api/${unixInput}`);
-        }
-      });
-
-      dateForm.addEventListener("submit", (event) => {
-        event.preventDefault();
-        const dateInput = dateForm.elements["dateInput"].value;
-        if (dateInput) {
-          const url = window.location.href;
-          location.assign(`${url}api/${dateInput}`);
-        }
-      });
-    </script>
+    <script defer src="/form.js"></script>
   </body>
 </html>
