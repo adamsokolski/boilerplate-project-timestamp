@@ -23,7 +23,6 @@ app.get("/", function (req, res) {
 app.get("/api/:date", function (req, res) {
   const regex = /^-\d+$|^\d+$/g;
   const onlyDigits = regex.test(req.params.date);
-  // console.log(`${req.params.date} ` + notOnlyDigits.test(req.params.date));
 
   let milliseconds = Date.now();
   if (onlyDigits) {
