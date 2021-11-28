@@ -19,17 +19,19 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-// your first API endpoint...
-app.get("/api/:date", function (req, res) {
-  const regex = /^-\d+$|^\d+$/g;
-  const onlyDigits = regex.test(req.params.date);
-
+const myApi = (req, res) => {
   let milliseconds = Date.now();
-  if (onlyDigits) {
-    milliseconds = parseInt(req.params.date);
-  } else {
-    const userDate = new Date(req.params.date);
-    milliseconds = userDate.getTime();
+
+  if (req.params.date) {
+    const regex = /^-\d+$|^\d+$/g;
+    const onlyDigits = regex.test(req.params.date);
+
+    if (onlyDigits) {
+      milliseconds = parseInt(req.params.date);
+    } else {
+      const userDate = new Date(req.params.date);
+      milliseconds = userDate.getTime();
+    }
   }
 
   const dateObject = new Date(milliseconds);
@@ -43,6 +45,15 @@ app.get("/api/:date", function (req, res) {
       : { error: "Invalid Date" };
 
   res.json(jsonData);
+};
+
+// your first API endpoint...
+app.get("/api/:date", function (req, res) {
+  myApi(req, res);
+});
+
+app.get("/api", (req, res) => {
+  myApi(req, res);
 });
 
 // listen for requests :)
